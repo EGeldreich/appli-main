@@ -39,13 +39,13 @@
                         // Check extension
                         $tabExtension = explode('.', $imgName); // explode file name
                         $extension = strtolower(end($tabExtension)); // get last element (the extension)
-                        $authorisedExt = ['jpg', 'jpeg', 'png'];
+                        $authorisedExt = ['jpg', 'jpeg', 'png']; // list of authorised extensions
 
                         // Check Mime type
-                        $mimeType = mime_content_type($tmpImgName);
-                        $authorisedMime = ['image/jpeg', 'image/png'];
+                        $mimeType = mime_content_type($tmpImgName); // get the MIME type from the file
+                        $authorisedMime = ['image/jpeg', 'image/png']; // list of authorised MIME
 
-                        $maxSize = 40000000;
+                        $maxSize = 40000000; // max size (in bytes)
 
                         if(in_array($mimeType, $authorisedMime) && in_array($extension, $authorisedExt) && $imgSize <= $maxSize && $imgError == 0){
 
