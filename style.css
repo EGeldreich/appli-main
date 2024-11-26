@@ -1,0 +1,39 @@
+a {
+    text-decoration: none;
+    color: inherit;
+    flex: 1 1;
+    text-align: center;
+}
+nav {
+    padding: 10px;
+    background-color: #202020;
+    color: #fefefe;
+    display: flex;
+    justify-content: space-around;
+}
+
+table, th, tr, td {
+    border: 1px solid black;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td {
+    width: calc(100%/7);
+    height: 50px;
+    text-align: center;
+}
+button {
+    margin: 0 5px;
+}
+.good {
+    background-color: aquamarine;
+}
+.bad {
+    background-color: burlywood;
+}
+.product-img {
+    height: 50px;
+    object-fit: cover;
+}
