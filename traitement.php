@@ -36,19 +36,24 @@
                         $imgSize = $_FILES['file']['size'];
                         $imgError = $_FILES['file']['error'];
 
+                        // Check extension
                         $tabExtension = explode('.', $imgName); // explode file name
                         $extension = strtolower(end($tabExtension)); // get last element (the extension)
-
                         $authorisedExt = ['jpg', 'jpeg', 'png'];
-                        $maxSize = 400000;
 
-                        if(in_array($extension, $authorisedExt) && $imgSize <= $maxSize && $imgError == 0){
+                        // Check Mime type
+                        $mimeType = mime_content_type($tmpImgName);
+                        $authorisedMime = ['image/jpeg', 'image/png'];
 
-                            $uniqueName = uniqid('', true);
-                            $imgUniqueName = $uniqueName.'.'.$extension;
+                        $maxSize = 40000000;
 
-                            move_uploaded_file($tmpImgName, './upload/'.$imgUniqueName);
-                            $img = './upload/'.$imgUniqueName;
+                        if(in_array($mimeType, $authorisedMime) && in_array($extension, $authorisedExt) && $imgSize <= $maxSize && $imgError == 0){
+
+                            $uniqueName = uniqid('', true); // Give a unique name in case users upload a file with the same name
+                            $imgUniqueName = $uniqueName.'.'.$extension; // add back the extension
+
+                            move_uploaded_file($tmpImgName, './upload/'.$imgUniqueName); // put the file in the upload folder
+                            $img = './upload/'.$imgUniqueName; // set $img as the path to the img
 
                         } else {
                             $_SESSION['notification'] = 'Votre image ne correspond pas à nos normes';
